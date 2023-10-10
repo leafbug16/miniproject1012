@@ -11,10 +11,10 @@
 </head>
 <body>
 	<%@include file="navi.jsp" %>
- 	<script>
+<%--  	<script>
 		location.href = "./bbs";
 	</script>
-	<jsp:include page="bbs.jsp" />
+	<jsp:include page="bbs.jsp" /> --%>
 	<%@include file="footer.jsp" %>
 </body>
 </html>
