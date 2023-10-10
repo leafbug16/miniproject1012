@@ -12,15 +12,10 @@
 #con {
 	display: flex;
 	flex-direction: column;
-	height: calc(100vh-50px);
+	min-height: calc(100vh - 100px);
 }
 
-#header {
-	height: 50px;
-	flex-shrink: 0;
-}
-
-#footer {
+.navbar {
 	height: 50px;
 	flex-shrink: 0;
 }
@@ -28,6 +23,13 @@
 #spacing{
  flex: 1 0 auto;
 }
+
+.footer {
+	height: 50px;
+	flex-shrink: 0;
+	bottom: 0;
+}
+
 </style>
 </head>
 <body>
