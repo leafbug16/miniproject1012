@@ -78,8 +78,8 @@ table, tr, td, th {
 			</td>
 		</tr>
 	</table>
-	
 	<%@include file="comment.jsp" %>
+	<%@include file="footer.jsp" %>
 	
  	<script>
 		bno = ${param.num };

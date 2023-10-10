@@ -121,6 +121,7 @@
 	  <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='write?back=freeBbs';" id="writeBtn">글쓰기</button>
 	  </div>
   </div>
+  <%@include file="footer.jsp" %>
   
   <script>
     function searchCheck(frm) {
