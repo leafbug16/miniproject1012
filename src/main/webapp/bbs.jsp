@@ -13,6 +13,10 @@
   <title>전체 글 보기</title>
   <script src="https://kit.fontawesome.com/77d5171cb8.js" crossorigin="anonymous"></script>
   <style>
+  	#searchForm{
+  		margin-left: 980px;
+  		margin-bottom: 15px;
+  	}
   	#bbsTitle {
   		margin-top: 20px;
   	}
@@ -31,6 +35,13 @@
   		color: black;
   		text-decoration: none;
   	}
+  	#boardBottom {
+  		margin-left: 580px;
+  		margin-top: 30px;
+  	}
+  	#writeBtn {
+  		margin-left: 490px;
+  	}
   </style>
 </head>
 
@@ -40,8 +51,8 @@
     <h3 id="bbsTitle">전체 글 보기</h3>
     <!-- 검색폼 -->
     <!-- searchField값, searchWord값을 list 컨트롤러로 보내는 역할 -->
-    <form action="bbs" method="get" onsubmit="return searchCheck(this)">
-      <table class="table" id="tsearch">
+    <form action="bbs" method="get" onsubmit="return searchCheck(this)" id="searchForm">
+      <table id="tsearch">
         <tr>
           <td>
             <select class="form-select form-select-sm" aria-label="Small select example" name="searchField" style="width: 100px; display: inline-block">
@@ -50,7 +61,7 @@
             </select>   
             <input class="form-control form-control-sm" type="text" name="searchWord" id="search"
               value='${ empty param.searchWord ? "" : param.searchWord }' style="width: 150px; display: inline-block">
-            <button type="button" class="btn btn-dark btn-sm">검색</button>
+            <button type="button" class="btn btn-secondary btn-sm">검색</button>
           </td>
         </tr>
       </table>
@@ -101,7 +112,7 @@
         </c:forEach>
       </tbody>
     </table>
-    <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='write';">글쓰기</button>
+    <div id="boardBottom">
     <c:if test="${ph.showPrev }">
       <a href="<c:url value='/bbs${ph.sc.getQueryString(ph.beginPage-1)}'/>" class="pageMove">&laquo;</a>
     </c:if>
@@ -111,6 +122,8 @@
     <c:if test="${ph.showNext }">
       <a href="<c:url value='/bbs${ph.sc.getQueryString(ph.endPage+1)}'/>" class="pageMove">&raquo;</a>
     </c:if>
+    <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='write';" id="writeBtn">글쓰기</button>
+    </div>
   </div>
 
   <script>
