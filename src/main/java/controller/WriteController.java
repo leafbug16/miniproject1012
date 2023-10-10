@@ -19,9 +19,13 @@ public class WriteController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		if (session.getAttribute("id") == null) {
-			String back = req.getParameter("back");
-			System.out.println("write컨트롤러에서 back : " + back);
-			JSFunction.alertLocation("로그인 해주세요", "./login?back="+back, resp);
+			if (req.getParameter("back") != null) {
+				String back = req.getParameter("back");
+				System.out.println("write컨트롤러에서 back : " + back);
+				JSFunction.alertLocation("로그인 해주세요", "./login?back="+back, resp);
+			} else {
+				JSFunction.alertLocation("로그인 해주세요", "./login", resp);
+			}
 		} else {
 			req.getRequestDispatcher("write.jsp").forward(req, resp);
 		}
