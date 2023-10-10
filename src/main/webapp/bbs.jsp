@@ -42,12 +42,15 @@
   	#writeBtn {
   		margin-left: 490px;
   	}
+  	#spacing {
+			min-height: 780px;
+		}
   </style>
 </head>
 
 <body>
 	<%@include file="navi.jsp" %>
-  <div class="container-xxl">
+  <div class="container-xxl" id="spacing">
     <h3 id="bbsTitle">전체 글 보기</h3>
     <!-- 검색폼 -->
     <!-- searchField값, searchWord값을 list 컨트롤러로 보내는 역할 -->

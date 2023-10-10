@@ -8,15 +8,36 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<style>
+	h5 {
+		margin-top: 30px;
+	}
+	li {
+		list-style: none;
+		overflow: hidden;
+	}
+	.delBtn {
+		color: lightgray;
+	}
+	.modBtnb {
+		margin-left: 50px;
+	}
+	.spacing {
+		height: 20px;
+	}
+	#sendBtn {
+		margin-top: 3px;
+	}
+</style>
 </head>
 <body>
-	<h3>댓글</h3>
+	<h5>댓글</h5>
 	<div>
-		<input type="text" name="comment" id="comment">
-		<button type="button" id="sendBtn">등록</button>
+		<input class="form-control form-control-sm" type="text" name="comment" id="comment" style="width: 800px; height:100px;">
+		<button class="btn btn-secondary btn-sm" type="button" id="sendBtn">등록</button>
 	</div>
+	<div class="spacing"></div>
 	<div class="mod"></div>
-	<h3>서버로부터 온 데이터</h3>
 	<div id="commentList"></div>
 	
 	<script>
@@ -39,13 +60,14 @@
 			let tmp = "<ul>";
 			comments.forEach(function (comment) {
 				tmp += "<li data-cno="+comment.cno + " data-bno="+comment.bno + ">";
-				tmp +='commenter= <span class="commenter"> '+comment.commenter+'</span>';
-				tmp +='   comment= <span class="comment"> '+comment.comment+'</span>';
+				tmp +='<span class="commenter"><b> '+comment.commenter+'</b></span>';
+				tmp +='   / <span class="comment"> '+comment.comment+'</span>';
 				if (comment.commenter == "${sessionScope.id }") {
-					tmp += "<button type='button' class='delBtn'>삭제</button>";
-					tmp += "<button type='button' class='modBtnb'>수정</button>";
+					tmp += "<button type='button' class='btn btn-link modBtnb'>수정</button>";
+					tmp += "<button type='button' class='btn btn-link delBtn'>삭제</button>";
 				}
 				tmp += "</li>";
+				tmp += "<hr>";
 			})
 			return tmp + "</ul>";
 		}
@@ -84,7 +106,7 @@
 			$(".mod").on("click", "#modBtn", (function() {
 				let comment = $("input[name=recomment]").val();
 				if (comment.trim() == "") {
-					alert("입력 안하면 죽임");
+					alert("내용을 입력하세요");
 					return;
 				}
 				let cno = $("#modBtn").attr("data-cno");
