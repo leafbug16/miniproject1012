@@ -92,6 +92,11 @@
     .bd-mode-toggle {
       z-index: 1500;
     }
+    
+    .spacer {
+		  display: inline-block;
+		  width: 10px; /* 원하는 간격으로 조정 */
+		}
   </style>
 
 
@@ -189,6 +194,8 @@
         <label class="form-check-label" for="flexCheckDefault">
           아이디 기억
         </label>
+        <span class="spacer"></span>
+        <a href="./register" id="register">회원가입</a>
       </div>
       <button class="btn btn btn-outline-light w-100 py-2" type="submit">로그인</button>
       <p class="mt-5 mb-3 text-body-secondary">&copy; 2023-10-12</p>
