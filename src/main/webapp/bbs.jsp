@@ -16,6 +16,21 @@
   	#bbsTitle {
   		margin-top: 20px;
   	}
+  	.pageMove {
+  		padding: 5px;
+  		border: 1px solid lightgray;
+  		color: black;
+  		text-decoration: none;
+  	}
+  	.check {
+  		color: red !important;
+  	}
+  	#pageNum {
+  		padding: 5px;
+  		border: 1px solid lightgray;
+  		color: black;
+  		text-decoration: none;
+  	}
   </style>
 </head>
 
@@ -88,13 +103,13 @@
     </table>
     <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='write';">글쓰기</button>
     <c:if test="${ph.showPrev }">
-      <a href="<c:url value='/bbs${ph.sc.getQueryString(ph.beginPage-1)}'/>">&laquo;</a>
+      <a href="<c:url value='/bbs${ph.sc.getQueryString(ph.beginPage-1)}'/>" class="pageMove">&laquo;</a>
     </c:if>
     <c:forEach var="i" begin="${ph.beginPage }" end="${ph.endPage }">
-      <a class="${ph.sc.page==i? 'check':'' }" href="<c:url value='/bbs${ph.sc.getQueryString(i)}'/>">${i }</a>
+      <a class="${ph.sc.page==i? 'check':'' }" href="<c:url value='/bbs${ph.sc.getQueryString(i)}'/>" id="pageNum">${i }</a>
     </c:forEach>
     <c:if test="${ph.showNext }">
-      <a href="<c:url value='/bbs${ph.sc.getQueryString(ph.endPage+1)}'/>">&raquo;</a>
+      <a href="<c:url value='/bbs${ph.sc.getQueryString(ph.endPage+1)}'/>" class="pageMove">&raquo;</a>
     </c:if>
   </div>
 

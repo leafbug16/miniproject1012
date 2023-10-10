@@ -43,12 +43,18 @@
                 <span id="name">${sessionScope.name}</span>님 환영합니다^^
               </c:if>
             </div>
-            <li class="nav-item">
-              <a class="nav-link" href="./login">로그인</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./logout">로그아웃</a>
-            </li>
+            <c:choose>
+							<c:when test="${not empty sessionScope.id}">
+								<li class="nav-item">
+              		<a class="nav-link" href="./logout">로그아웃</a>
+            		</li>
+							</c:when>
+							<c:otherwise>
+		            <li class="nav-item">
+		              <a class="nav-link" href="./login">로그인</a>
+		            </li>
+							</c:otherwise>
+						</c:choose>
           </ul>
         </div>
       </div>
