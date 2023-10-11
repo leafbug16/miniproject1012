@@ -32,6 +32,7 @@ public class ViewController extends HttpServlet{
 		
 	  // 세션에서 저장된 id정보를 가져와서
 		String id = req.getSession().getAttribute("id")+"";
+		req.setAttribute("id", id);
 		int res =dao.selectLike(id, num); // 현재 사용자가 좋아요를 눌렀는지를 확인 ( 좋아요 개수 조회 )
 		req.setAttribute("res", res); // request영역에 공유
 		

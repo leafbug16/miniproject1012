@@ -56,9 +56,9 @@
 			</tr>
 			<tr>
 				<td colspan="5">
-					<c:if test="${not empty sessionScope.id } && ${sessionScope.id == dto.getId() }">
-						<button type="button" onclick="location.href='update?num=${dto.getNum() }';">수정</button>
-						<button type="button" onclick="location.href='delete?num=${dto.getNum() }'">삭제</button>
+					<c:if test="${not empty sessionScope.id and sessionScope.id == dto.getId() }">
+						<button class="btn btn-secondary btn-sm" type="button" onclick="location.href='update?num=${dto.getNum() }'">수정</button>
+						<button class="btn btn-secondary btn-sm" type="button" onclick="location.href='delete?num=${dto.getNum() }'">삭제</button>
 					</c:if>
 					<c:choose>
 						<c:when test="${not empty back }">
