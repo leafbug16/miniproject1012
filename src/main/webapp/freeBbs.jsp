@@ -15,7 +15,7 @@
     .con {
   		display: flex;
 			flex-direction: column;
-			min-height: calc(100vh - 100px);
+			min-height: calc(100vh - 150px);
   	}
   	
   	.spacing {
@@ -58,8 +58,8 @@
 </head>
 
 <body>
-<div class="container-xxl con">
   <%@include file="navi.jsp" %>
+<div class="container-xxl con">
   <div class="container-xxl spacing">
   	<div id="formControll">
 		  <h3 id="bbsTitle">자유게시판</h3>

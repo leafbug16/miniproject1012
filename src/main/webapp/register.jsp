@@ -182,12 +182,12 @@
       <div class="form-floating">
         <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="비밀번호" required>
         <label for="floatingPassword">비밀번호</label>
+      	<span id="passwordCheckError" class="error"></span>
       </div>
       <div class="form-floating">
         <input type="password" class="form-control" name="password" id="floatingPasswordCheck" placeholder="비밀번호" required>
         <label for="floatingPasswordCheck">비밀번호확인</label>
       </div>
-      <span id="passwordCheckError" class="error"></span>
       <div class="form-floating">
         <input type="text" class="form-control" name="name" id="floatingName" placeholder="name" autofocus required><br>
         <label for="floatingName">이름</label>

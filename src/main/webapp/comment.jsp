@@ -63,8 +63,8 @@
 			let tmp = "<ul>";
 			comments.forEach(function (comment) {
 				tmp += "<li data-cno="+comment.cno + " data-bno="+comment.bno + ">";
-				tmp +='<span class="commenter"><b> '+comment.commenter+'</b></span>';
-				tmp +='   / <span class="comment"> '+comment.comment+'</span>';
+				tmp +='<span class="commenter"><b> ['+comment.commenter+']</b></span>';
+				tmp +='   : <span class="comment"> '+comment.comment+'</span>';
 				if (comment.commenter == "${sessionScope.id }") {
 					tmp += "<button type='button' class='btn btn-link modBtnb'>수정</button>";
 					tmp += "<button type='button' class='btn btn-link delBtn'>삭제</button>";
@@ -95,16 +95,7 @@
 				}); //ajax
 			}); //sendBtn
 			
-			//댓글 옆 수정 버튼
-/* 			$("#commentList").on("click", ".modBtnb", (function() {
-				let cno = $(this).parent().attr("data-cno");
-				let bno = $(this).parent().attr("data-bno");				
-				$(".mod").append("<input class='form-control form-control-sm' type='text' name='recomment' id='recomment' style='width: 400px; height:50px;'>");
-				$(".mod").append("<button class='btn btn-secondary btn-sm' type='button' id='modBtn'>수정</button>");
-				$("input[name=recomment]").val($("span.comment", $(this).parent()).text());
-				$("#modBtn").attr("data-cno", cno);
-			})); */ //modBtnb
-			
+			//댓글 옆 수정버튼 클릭 시
 			$("#commentList").on("click", ".modBtnb", function() {
 			    let cno = $(this).parent().attr("data-cno");
 			    let bno = $(this).parent().attr("data-bno");                
@@ -118,27 +109,7 @@
 			    $("#modBtn").attr("data-cno", cno);
 			}); 
 			
-			//등록 버튼 옆 수정 버튼
-/* 			$(".mod").on("click", "#modBtn", (function() {
-				let comment = $("input[name=recomment]").val();
-				if (comment.trim() == "") {
-					alert("내용을 입력하세요");
-					return;
-				}
-				let cno = $("#modBtn").attr("data-cno");
-				let del = $("#recomment").detach();
-				let btn = $("#modBtn").detach();
-				$.ajax({
-					type : "POST",
-					url : "./comments",
-					data : { cno: cno, comment: comment, mode: "mody" },
-					success : function(result){
-						showList(bno);
-					},
-					error: function(request, status, error){ alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error) }
-				}); //ajax
-			})); */ //modBtn
-			
+			//수정완료 클릭 시
 			$("#commentList").on("click", "#modBtn", function() {
 				let comment = $("input[name=recomment]").val();
 				if (comment.trim() == "") {

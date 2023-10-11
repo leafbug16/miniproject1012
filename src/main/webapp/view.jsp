@@ -14,6 +14,16 @@
 	#bbsTitle {
 		margin-top: 20px;
 	}
+	th {
+		background-color: lightgray !important;
+		text-align: center !important;
+	}
+	td {
+		text-align: center !important;
+	}
+	.td-content {
+		text-align: left !important;
+	}
 </style>
 </head>
 <body>
@@ -22,11 +32,11 @@
 		<h3 id="bbsTitle">view</h3>
 		<table class="table table-bordered border-dark">
 			<tr>
-				<td>카테고리</td>
-				<td>번호</td>
-				<td>작성자</td>
-				<td>조회수</td>
-				<td>작성일</td>
+				<th>카테고리</th>
+				<th>번호</th>
+				<th>작성자</th>
+				<th>조회수</th>
+				<th>작성일</th>
 			</tr>
 			<tr>
 				<td>
@@ -42,16 +52,15 @@
 			</tr>
 	
 			<tr>
-				<td>제목</td>
-				<td colspan="4">${dto.getTitle() }</td>
+				<td colspan="5" class="h4">${dto.getTitle() }</td>
 			</tr>
 			<tr>
-				<td colspan="5">내용</td>
+				<th colspan="5" style="height:4px;"></th>
 			</tr>
-			<tr style="min-height:200px;">
+			<tr>
 				<%-- <td colspan="5">${dto.getContent() }</td> --%>
 				 <td colspan="5">
-    			<div style="min-height: 200px;">${dto.getContent() }</div>
+    			<div class="td-content" style="min-height: 200px;">${dto.getContent() }</div>
   			</td>
 			</tr>
 			<tr>

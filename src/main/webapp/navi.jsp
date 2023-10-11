@@ -14,9 +14,9 @@
     		height: 50px;
 				flex-shrink: 0;
     	}
-    	#text {
+    	#name {
     		margin-top: 8px;
-    		color: red;
+    		color: blue;
     	}
     </style>
   </head>
@@ -24,7 +24,7 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-xxl">
         <a class="navbar-brand" href="./main">
-          <img src="assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+          <img src="assets/brand/svg-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
           miniproject1012
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,12 +47,10 @@
               <a class="nav-link" aria-current="page" href="#">TodoList</a>
             </li>
           </ul>
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <div id="text">
+          <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
               <c:if test="${not empty sessionScope.name}">
-                <span id="name">${sessionScope.name}</span>님 환영합니다^^
+                <span id="name">${sessionScope.name}</span>
               </c:if>
-            </div>
             <c:choose>
 							<c:when test="${not empty sessionScope.id}">
 								<li class="nav-item">
