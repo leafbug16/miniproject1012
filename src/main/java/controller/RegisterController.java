@@ -31,7 +31,8 @@ public class RegisterController extends HttpServlet{
 		if (insertResult == -1) {
 			JSFunction.alertBack("회원가입실패", resp);
 		} else {
-			resp.sendRedirect("./login");
+			JSFunction.alertLocation("가입 성공", "./login", resp);
+			/* resp.sendRedirect("./login"); */
 		}
 	}
 	

@@ -208,12 +208,8 @@
 	    return;
 	  }
 	  event.target.submit();
-	  alert("가입 성공");
 	});
   </script>
-  
-  
-  
   <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

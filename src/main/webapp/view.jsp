@@ -48,7 +48,18 @@
 				<td>${dto.getNum() }</td>
 				<td>${dto.getId() }</td>
 				<td>${dto.getViewCnt() }</td>
-				<td>${dto.getPostDate() }</td>
+				<fmt:formatDate value="${dto.getPostDate() }" type="date" pattern="yyyy-MM-dd HH시 mm분" var="postDate" />
+	      <fmt:formatDate value="${dto.getPostDate() }" type="time" pattern="오늘 HH시 mm분" var="postTime" />
+	      <fmt:formatDate value="<%=new java.util.Date()%>" type="date" pattern="yyyy-MM-dd" var="today" />
+	      <c:choose>
+	      	<c:when test="${postDate eq today }">
+          	<td>${postTime }</td>
+          </c:when>
+          <c:otherwise>
+          	<td>${postDate }</td>
+          </c:otherwise>
+        </c:choose>
+				<%-- <td>${dto.getPostDate() }</td> --%>
 			</tr>
 	
 			<tr>
@@ -58,7 +69,6 @@
 				<th colspan="5" style="height:4px;"></th>
 			</tr>
 			<tr>
-				<%-- <td colspan="5">${dto.getContent() }</td> --%>
 				 <td colspan="5">
     			<div class="td-content" style="min-height: 200px;">${dto.getContent() }</div>
   			</td>
