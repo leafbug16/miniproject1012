@@ -170,7 +170,7 @@
 
 
   <main class="form-signin w-100 m-auto">
-    <form action="./register" method="post">
+    <form id="signupForm" action="./register" method="post">
       <input type="hidden" name="back" value="${back }">
       <a href="./main"><img class="mb-4" src="assets/brand/bootstrap-logo-white.svg" alt="" width="72" height="57"></a>
       <h1 class="h3 mb-3 fw-normal">회원가입</h1>
@@ -187,6 +187,7 @@
         <input type="password" class="form-control" name="password" id="floatingPasswordCheck" placeholder="비밀번호" required>
         <label for="floatingPasswordCheck">비밀번호확인</label>
       </div>
+      <span id="passwordCheckError" class="error"></span>
       <div class="form-floating">
         <input type="text" class="form-control" name="name" id="floatingName" placeholder="name" autofocus required><br>
         <label for="floatingName">이름</label>
@@ -195,6 +196,24 @@
       <p class="mt-5 mb-3 text-body-secondary">&copy; 2023-10-12</p>
     </form>
   </main>
+  
+  <script>
+  document.getElementById('signupForm').addEventListener('submit', function (event) {
+		event.preventDefault();
+		var password = document.getElementById('floatingPassword').value;
+	  var passwordCheck = document.getElementById('floatingPasswordCheck').value;
+	  document.getElementById('passwordCheckError').textContent = '';
+	  if (passwordCheck !== password) {
+	    document.getElementById('passwordCheckError').textContent = '비밀번호가 일치하지 않습니다';
+	    return;
+	  }
+	  event.target.submit();
+	  alert("가입 성공");
+	});
+  </script>
+  
+  
+  
   <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
