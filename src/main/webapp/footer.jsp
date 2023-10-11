@@ -7,9 +7,13 @@
 <title>Insert title here</title>
 <script src="https://kit.fontawesome.com/77d5171cb8.js" crossorigin="anonymous"></script>
 <style>
-.container{
+/* .container{
 
-transform: translateY(0);
+	transform: translateY(0);
+} */
+.footer {
+	height: 50px;
+	flex-shrink: 0;
 }
 </style>
 </head>

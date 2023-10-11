@@ -22,6 +22,5 @@
 		<button type="reset">다시입력</button>
 		<button type="reset" onclick="location.href='bbs'">목록보기</button>
 	</form>
-	<%@include file="footer.jsp" %>
 </body>
 </html>

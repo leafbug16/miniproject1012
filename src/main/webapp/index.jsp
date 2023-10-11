@@ -13,25 +13,10 @@
 	display: flex;
 	flex-direction: column;
 	min-height: calc(100vh - 100px);
-	border: 1px solid cyan;
-}
-
-.navbar {
-	height: 50px;
-	flex-shrink: 0;
-	border: 1px solid red;
 }
 
 #spacing{
  flex: 1 0 auto;
- border: 1px solid black;
-}
-
-.footer {
-	height: 50px;
-	flex-shrink: 0;
-	bottom: 0;
-	border: 1px solid blue;
 }
 
 </style>

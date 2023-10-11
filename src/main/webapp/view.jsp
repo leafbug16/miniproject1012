@@ -14,14 +14,11 @@
 	#bbsTitle {
 		margin-top: 20px;
 	}
-	.container-xxl{
-		min-height: 100%;
-	}
 </style>
 </head>
 <body>
 	<%@include file="navi.jsp"%>
-	<div class="container-xxl">
+	<main class="container-xxl spacing">
 		<h3 id="bbsTitle">view</h3>
 		<table class="table table-bordered border-dark">
 			<tr>
@@ -83,8 +80,7 @@
 			</tr>
 		</table>
 		<%@include file="comment.jsp" %>
-	</div>
-	<%@include file="footer.jsp" %>
+	</main>
 	
  	<script>
 		bno = ${param.num };

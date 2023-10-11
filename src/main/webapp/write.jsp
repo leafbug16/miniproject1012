@@ -6,21 +6,49 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	.writeTitle {
+		margin-top: 20px;
+		margin-left: 200px;
+	}
+	#formControll {
+		width: 1000px;
+		height: 700px;
+		margin: 0px auto;
+		background: blue;
+	}
+	select {
+		display:inline-block;
+	}
+	.title {
+		width: 700px;
+	}
+	.content {
+		width: 810px;
+		margin-left: 200px;
+	}
+	#boardType {
+		margin-left: 200px;
+	}
+	#button {
+		margin-left: 200px;
+	}
+</style>
 </head>
 <body>
 	<%@include file="navi.jsp" %>
-	<h3>글쓰기 화면</h3>
-	<form action="write" method="post">
-		제목 : <input type="text" name="title" autofocus><br><br>
-		내용 : <textarea name="content" style="height: 300px"></textarea><br>
-		<select name="boardType">
-			<option value="ano">공지사항</option>
-			<option value="free" selected>자유게시판</option>
-		</select><br>
-		<button>작성</button>
-		<button type="reset">리셋</button>
-		<button type="button" onclick="location.href='bbs';">목록보기</button>
-	</form>
-	<%@include file="footer.jsp" %>
+	<div class="container-xxl">
+		<h3 class="writeTitle">글쓰기</h3>
+		<form action="write" method="post">
+			<select id="boardType" name="boardType">
+				<option value="ano">공지사항</option>
+				<option value="free" selected>자유게시판</option>
+			</select>
+			<input class="title" type="text" name="title" autofocus placeholder="제목"><br><br>
+			<textarea class="content" name="content" style="height: 300px" placeholder="내용"></textarea><br><br>
+			<button class="btn btn-primary btn-sm" id="button">작성</button>
+			<button class="btn btn-secondary btn-sm" type="button" onclick="location.href='bbs';">목록</button>
+		</form>
+	</div>
 </body>
 </html>

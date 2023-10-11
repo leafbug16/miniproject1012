@@ -12,8 +12,18 @@
   <title>자유게시판</title>
   <script src="https://kit.fontawesome.com/77d5171cb8.js" crossorigin="anonymous"></script>
   <style>
+    .con {
+  		display: flex;
+			flex-direction: column;
+			min-height: calc(100vh - 100px);
+  	}
+  	
+  	.spacing {
+  		flex: 1 0 auto;
+  	}
+  	
   	#searchForm{
-  		margin-left: 980px;
+  		margin-left: 950px;
   		margin-bottom: 15px;
   	}
   	#bbsTitle {
@@ -39,14 +49,15 @@
   		margin-top: 30px;
   	}
   	#writeBtn {
-  		margin-left: 490px;
+  		margin-left: 550px;
   	}
   </style>
 </head>
 
 <body>
+<div class="container-xxl con">
   <%@include file="navi.jsp" %>
-  <div class="container-xxl">
+  <div class="container-xxl spacing">
 	  <h3 id="bbsTitle">자유게시판</h3>
 	  <!-- 검색폼 -->
 	  <!-- searchField값, searchWord값을 list 컨트롤러로 보내는 역할 -->
@@ -121,6 +132,7 @@
 	  <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='write?back=freeBbs';" id="writeBtn">글쓰기</button>
 	  </div>
   </div>
+</div>
   <%@include file="footer.jsp" %>
   
   <script>
