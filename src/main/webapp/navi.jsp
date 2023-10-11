@@ -14,6 +14,10 @@
     		height: 50px;
 				flex-shrink: 0;
     	}
+    	#text {
+    		margin-top: 8px;
+    		color: red;
+    	}
     </style>
   </head>
   <body>
