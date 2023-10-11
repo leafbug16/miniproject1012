@@ -96,17 +96,30 @@
 			}); //sendBtn
 			
 			//댓글 옆 수정 버튼
-			$("#commentList").on("click", ".modBtnb", (function() {
+/* 			$("#commentList").on("click", ".modBtnb", (function() {
 				let cno = $(this).parent().attr("data-cno");
 				let bno = $(this).parent().attr("data-bno");				
 				$(".mod").append("<input class='form-control form-control-sm' type='text' name='recomment' id='recomment' style='width: 400px; height:50px;'>");
 				$(".mod").append("<button class='btn btn-secondary btn-sm' type='button' id='modBtn'>수정</button>");
 				$("input[name=recomment]").val($("span.comment", $(this).parent()).text());
 				$("#modBtn").attr("data-cno", cno);
-			})); //modBtnb
+			})); */ //modBtnb
+			
+			$("#commentList").on("click", ".modBtnb", function() {
+			    let cno = $(this).parent().attr("data-cno");
+			    let bno = $(this).parent().attr("data-bno");                
+			    let originalComment = $("span.comment", $(this).parent()).text();
+			    
+			    // 대체
+			    $("span.comment", $(this).parent()).replaceWith("<input class='form-control form-control-sm' type='text' name='recomment' id='recomment" + cno + "' style='width: 400px; height:50px;'>");
+			    $(this).replaceWith("<button class='btn btn-secondary btn-sm' type='button' id='modBtn'>수정 완료</button>");
+			    
+			    $("input[name=recomment]", $(this).parent()).val(originalComment);
+			    $("#modBtn").attr("data-cno", cno);
+			}); 
 			
 			//등록 버튼 옆 수정 버튼
-			$(".mod").on("click", "#modBtn", (function() {
+/* 			$(".mod").on("click", "#modBtn", (function() {
 				let comment = $("input[name=recomment]").val();
 				if (comment.trim() == "") {
 					alert("내용을 입력하세요");
@@ -124,7 +137,30 @@
 					},
 					error: function(request, status, error){ alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error) }
 				}); //ajax
-			})); //modBtn
+			})); */ //modBtn
+			
+			$("#commentList").on("click", "#modBtn", function() {
+				let comment = $("input[name=recomment]").val();
+				if (comment.trim() == "") {
+					alert("내용을 입력하세요");
+					return;
+				}
+				let cno = $("#modBtn").attr("data-cno");
+
+				$.ajax({
+					type : "POST",
+					url : "./comments",
+					data : { cno: cno, comment: comment, mode: "mody" },
+					success : function(result){
+						showList(bno);
+			        },
+			        error: function(request, status, error){ alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error) }
+			     }); //ajax
+
+			     // 복구
+			     $("input[name=recomment]", $(this).parent()).replaceWith('<span class="comment"> '+ comment +'</span>');
+			     $(this).replaceWith("<button type='button' class='btn btn-link modBtnb'>수정</button>");
+			});
 			
 			//삭제 버튼
 			$("#commentList").on("click", ".delBtn", (function() {
@@ -144,27 +180,6 @@
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
