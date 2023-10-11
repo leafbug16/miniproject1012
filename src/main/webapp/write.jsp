@@ -11,12 +11,6 @@
 		margin-top: 20px;
 		margin-left: 200px;
 	}
-	#formControll {
-		width: 1000px;
-		height: 700px;
-		margin: 0px auto;
-		background: blue;
-	}
 	select {
 		display:inline-block;
 	}
