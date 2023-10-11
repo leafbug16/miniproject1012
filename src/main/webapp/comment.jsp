@@ -28,6 +28,9 @@
 	#sendBtn {
 		margin-top: 3px;
 	}
+	#modBtn {
+		margin-top: 3px;
+	}
 </style>
 </head>
 <body>
@@ -95,9 +98,9 @@
 			//댓글 옆 수정 버튼
 			$("#commentList").on("click", ".modBtnb", (function() {
 				let cno = $(this).parent().attr("data-cno");
-				let bno = $(this).parent().attr("data-bno");
-				$(".mod").append("<input type='text' name='recomment' id='recomment'>");
-				$(".mod").append("<button type='button' id='modBtn'>수정</button>");
+				let bno = $(this).parent().attr("data-bno");				
+				$(".mod").append("<input class='form-control form-control-sm' type='text' name='recomment' id='recomment' style='width: 400px; height:50px;'>");
+				$(".mod").append("<button class='btn btn-secondary btn-sm' type='button' id='modBtn'>수정</button>");
 				$("input[name=recomment]").val($("span.comment", $(this).parent()).text());
 				$("#modBtn").attr("data-cno", cno);
 			})); //modBtnb
