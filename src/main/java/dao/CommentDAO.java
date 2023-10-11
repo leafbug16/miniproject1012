@@ -19,7 +19,7 @@ public class CommentDAO {
 
 	public CommentDAO() {
 		try {
-			String dbURL = "jdbc:mysql://localhost:3306/board_db";
+			String dbURL = "jdbc:mysql://localhost:3306/miniproject1012";
 			String dbID = "root";
 			String dbPassword = "0000";
 			Class.forName("com.mysql.jdbc.Driver");
