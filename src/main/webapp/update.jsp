@@ -14,7 +14,7 @@
 		margin-left: 200px;
 	}
 	.title {
-		width: 700px;
+		width: 810px;
 		margin-left: 200px;
 	}
 	.content {
