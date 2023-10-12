@@ -102,7 +102,7 @@
 			    let originalComment = $("span.comment", $(this).parent()).text();
 			    
 			    // 대체
-			    $("span.comment", $(this).parent()).replaceWith("<input class='form-control form-control-sm' type='text' name='recomment' id='recomment" + cno + "' style='width: 400px; height:50px;'>");
+			    $("span.comment", $(this).parent()).replaceWith("<input class='form-control form-control-sm' type='text' name='recomment' id='recomment" + cno + "' style='width: 400px; height:50px;' value='"+originalComment+"'>");
 			    $(this).replaceWith("<button class='btn btn-secondary btn-sm' type='button' id='modBtn'>수정 완료</button>");
 			    
 			    $("input[name=recomment]", $(this).parent()).val(originalComment);
