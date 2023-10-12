@@ -21,20 +21,16 @@ public class BbsController extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		BbsDAO dao = new BbsDAO();
-		int pageSize = Integer.parseInt(req.getServletContext().getInitParameter("pageSize"));
-		
+		Map<String, String> param = new HashMap<>();
 		SearchCondition sc = null;
-		PageHandler ph = null;
+		String searchField = req.getParameter("searchField");
+		String searchWord = req.getParameter("searchWord");
 		int pageNum = 1;
 		String pageTemp = req.getParameter("pageNum");
 		if (pageTemp != null && !"".equals(pageTemp)) {
 			pageNum = Integer.parseInt(pageTemp);
 		}
-		
-		Map<String, String> param = new HashMap<>();
-		String searchField = req.getParameter("searchField");
-		String searchWord = req.getParameter("searchWord");
+		int pageSize = 5;
 		if (searchWord != null && !"".equals(searchWord)) {
 			param.put("searchField", searchField);
 			param.put("searchWord", searchWord);
@@ -43,24 +39,16 @@ public class BbsController extends HttpServlet{
 			sc = new SearchCondition(pageNum, pageSize);
 		}
 		
+		BbsDAO dao = new BbsDAO();
 		int totalCount = dao.selectCountAll(param);
-		ph = new PageHandler(totalCount, sc);
 		param.put("offset", sc.getOffset(pageNum)+"");
 		param.put("pageSize", pageSize+"");
 		List<Bbs> boardLists = dao.selectListAll(param);
 		
+		PageHandler ph = new PageHandler(totalCount, sc);
 		req.setAttribute("ph", ph);
 		req.setAttribute("boardLists", boardLists);
 		req.getRequestDispatcher("/bbs.jsp").forward(req, resp);
 		
-		/*
-		 * int pageNumber = 1; if (req.getParameter("pageNumber") != null) { pageNumber
-		 * = Integer.parseInt(req.getParameter("pageNumber")); } BbsDAO dao = new
-		 * BbsDAO(); ArrayList<Bbs> list = dao.getList(pageNumber); HttpSession session
-		 * = req.getSession(); session.setAttribute("list", list);
-		 * session.setAttribute("pageNumber", pageNumber); session.setAttribute("dao",
-		 * dao); req.getRequestDispatcher("/bbs.jsp").forward(req, resp);
-		 */
 	}
-	
 }
