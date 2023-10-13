@@ -37,5 +37,4 @@ public class LikeController extends HttpServlet{
     }
    resp.sendRedirect("view?num="+bno);
 	}
-	
 }
