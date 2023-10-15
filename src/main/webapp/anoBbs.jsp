@@ -86,12 +86,12 @@
 		  <table class="table table-hover text-center">
 		    <thead>
 		      <tr>
-			      <th>번호</th>
-			      <th>제목</th>
-			      <th>작성자</th>
-			      <th>조회수</th>
-			      <th><i class="fa-solid fa-thumbs-up fa-lg"></i></th>
-			      <th>작성일</th>
+	          <th>번호</th>
+	          <th>제목</th>
+	          <th>글쓴이</th>
+	          <th>작성일</th>
+	          <th>조회</th>
+	          <th>추천</th>
 		      </tr>
 		    </thead>
 		    <tbody class="table-group-divider">
@@ -104,19 +104,19 @@
 		  					</a>
 							</td>
 		          <td>${list.getId() }</td>
+	            <fmt:formatDate value="${list.getPostDate() }" type="date" pattern="yyyy-MM-dd" var="postDate" />
+	            <fmt:formatDate value="${list.getPostDate() }" type="time" pattern="HH:mm" var="postTime" />
+	            <fmt:formatDate value="<%=new java.util.Date()%>" type="date" pattern="yyyy-MM-dd" var="today" />
+	            <c:choose>
+	              <c:when test="${postDate eq today }">
+	          			<td>${postTime }</td>
+	          		</c:when>
+	          		<c:otherwise>
+	            		<td>${postDate }</td>
+	          		</c:otherwise>
+	          	</c:choose>
 		          <td>${list.getViewCnt() }</td>
 		          <td>${list.getLikeNum() }</td>
-		            <fmt:formatDate value="${list.getPostDate() }" type="date" pattern="yyyy-MM-dd" var="postDate" />
-		            <fmt:formatDate value="${list.getPostDate() }" type="time" pattern="HH:mm" var="postTime" />
-		            <fmt:formatDate value="<%=new java.util.Date()%>" type="date" pattern="yyyy-MM-dd" var="today" />
-		            <c:choose>
-		              <c:when test="${postDate eq today }">
-		          <td>${postTime }</td>
-		          </c:when>
-		          <c:otherwise>
-		            <td>${postDate }</td>
-		          </c:otherwise>
-		          </c:choose>
 		        </tr>
 		      </c:forEach>
 		    </tbody>

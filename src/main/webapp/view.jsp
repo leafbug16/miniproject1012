@@ -88,13 +88,8 @@
 						</c:otherwise>
 					</c:choose>
 					<!-- 좋아요 기능 추가 -->
-					<c:if test="${res==1 }">
-						<button class="btn btn-light-sm" id='likeNum' type='button' onclick='unlike(bno);' data-cnt ='1' data-check='true'><i class="fa-solid fa-thumbs-up fa-lg"></i></button>
-					</c:if>
-					<c:if test='${res!=1 }'>
-						<button class="btn btn-light-sm" id='likeNum' type='button' onclick='like(bno);' data-cnt ='0' data-check='false'><i class="fa-regular fa-thumbs-up fa-lg"></i></button>
-					</c:if>
-					[${dto.getLikeNum() }]
+					<span id="likeIcon"></span>
+					<span id="likeCnt"></span>
 				</td>
 			</tr>
 		</table>
@@ -102,13 +97,52 @@
 	</main>
 	
  	<script>
-		bno = ${param.num };
-		function like(bno) {
-			location.href = "./like?bno="+bno+"&mode=like";
-		}
-		function unlike(bno) {
-			location.href = "./like?bno="+bno+"&mode=unlike";
-		}
+		let likeBoardId = ${dto.num };
+		let showLike = function(likeBoardId) {
+			$.ajax({
+				type: "GET",
+				url: "./like",
+				data: { boardId: likeBoardId },
+				success: function(jArray) {
+					jArray.forEach(function (like) {
+						if (like.res == 1) {
+							$("#likeIcon").html("<button id='afterLike' type='button'>💚</button>");
+						} else {
+							$("#likeIcon").html("<button id='beforeLike' type='button'>🤍</button>");
+						}
+						$("#likeCnt").html('['+ like.likeCnt +']');
+					});
+				}, //success
+				error: function(request, status, error){ alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error+"showLike 중 에러") }
+			}); //ajax
+		}; //showLike
+		
+		$(document).ready(function(){
+			showLike(likeBoardId);
+			$('#likeIcon').on("click", "#afterLike", function() {
+				$.ajax({
+					type : "GET",
+					url : "./like",
+					data : { boardId: likeBoardId, mode: "deleteLike"},
+					success : function(result) {
+						showLike(likeBoardId);
+					},
+					error: function(request, status, error){ alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error+"\n" +"댓글 등록 에러") }
+				}); //ajax
+			}); //afterLike
+			
+			$('#likeIcon').on("click", "#beforeLike", function() {
+				$.ajax({
+					type : "GET",
+					url : "./like",
+					data : { boardId: likeBoardId, mode: "addLike"},
+					success : function(result) {
+						showLike(likeBoardId);
+					},
+					error: function(request, status, error){ alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error+"\n" +"댓글 등록 에러") }
+				}); //ajax
+			}); //beforeLike	
+		});	
 	</script>
 </body>
 </html>

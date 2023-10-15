@@ -64,8 +64,6 @@
   	<div id="formControll">
 		  <h3 id="bbsTitle">자유게시판</h3>
 		  <!-- 검색폼 -->
-		  <!-- searchField값, searchWord값을 list 컨트롤러로 보내는 역할 -->
-		  <!-- new action bbs -> anoBbs -->
 		  <form action="freeBbs" method="get" onsubmit="return searchCheck(this)" id="searchForm">
 		  	<input type="hidden" name="free" value="1">
 		    <table id="tsearch">
@@ -86,12 +84,12 @@
 		  <table class="table table-hover text-center">
 		    <thead>
 		      <tr>
-			      <th>번호</th>
-			      <th>제목</th>
-			      <th>작성자</th>
-			      <th>조회수</th>
-			      <th><i class="fa-solid fa-thumbs-up fa-lg"></i></th>
-			      <th>작성일</th>
+	          <th>번호</th>
+	          <th>제목</th>
+	          <th>글쓴이</th>
+	          <th>작성일</th>
+	          <th>조회</th>
+	          <th>추천</th>
 		      </tr>
 		    </thead>
 		    <tbody class="table-group-divider">
@@ -104,19 +102,19 @@
 		  					</a>
 							</td>
 		          <td>${list.getId() }</td>
+	            <fmt:formatDate value="${list.getPostDate() }" type="date" pattern="yyyy-MM-dd" var="postDate" />
+	            <fmt:formatDate value="${list.getPostDate() }" type="time" pattern="HH:mm" var="postTime" />
+	            <fmt:formatDate value="<%=new java.util.Date()%>" type="date" pattern="yyyy-MM-dd" var="today" />
+	            <c:choose>
+	              <c:when test="${postDate eq today }">
+	          			<td>${postTime }</td>
+	          		</c:when>
+	          		<c:otherwise>
+	            		<td>${postDate }</td>
+	          		</c:otherwise>
+	          	</c:choose>
 		          <td>${list.getViewCnt() }</td>
 		          <td>${list.getLikeNum() }</td>
-		            <fmt:formatDate value="${list.getPostDate() }" type="date" pattern="yyyy-MM-dd" var="postDate" />
-		            <fmt:formatDate value="${list.getPostDate() }" type="time" pattern="HH:mm" var="postTime" />
-		            <fmt:formatDate value="<%=new java.util.Date()%>" type="date" pattern="yyyy-MM-dd" var="today" />
-		            <c:choose>
-		              <c:when test="${postDate eq today }">
-		          <td>${postTime }</td>
-		          </c:when>
-		          <c:otherwise>
-		            <td>${postDate }</td>
-		          </c:otherwise>
-		          </c:choose>
 		        </tr>
 		      </c:forEach>
 		    </tbody>
@@ -124,11 +122,9 @@
 		</div>
 	  <div id="boardBottom">
 	  <c:if test="${ph.showPrev }">
-	  	<!-- new 쿼리스트링 &ano=1 추가, anoBbs로 변경 -->
 	    <a href="<c:url value='/freeBbs${ph.sc.getQueryString(ph.beginPage-1)}&free=1'/>" class="pageMove">&laquo;</a>
 	  </c:if>
 	  <c:forEach var="i" begin="${ph.beginPage }" end="${ph.endPage }">
-	  	<!-- new 쿼리스트링 &ano=1 추가, anoBbs로 변경 -->
 	    <a class="${ph.sc.page==i? 'check':'' }" href="<c:url value='/freeBbs${ph.sc.getQueryString(i)}&free=1'/>" id="pageNum">${i }</a>
 	  </c:forEach>
 	  <c:if test="${ph.showNext }">
