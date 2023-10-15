@@ -97,6 +97,7 @@
 
   <!-- Custom styles for this template -->
   <link href="css/sign-in.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
@@ -174,7 +175,8 @@
       <input type="hidden" name="back" value="${back }">
       <a href="./main"><img class="mb-4" src="assets/brand/bootstrap-logo-white.svg" alt="" width="72" height="57"></a>
       <h1 class="h3 mb-3 fw-normal">회원가입</h1>
-
+			
+			<span id="userIdCheck"></span>
       <div class="form-floating">
         <input type="text" class="form-control" name="id" id="floatingInput" placeholder="name@example.com" autofocus required>
         <label for="floatingInput">아이디</label>
@@ -209,6 +211,25 @@
 	  }
 	  event.target.submit();
 	});
+  
+  $('#floatingInput').keyup(function(){
+	  let id = $("input[name=id]").val();
+		$.ajax({
+			type: "GET",
+			url: "./userIdCheck",
+			data: { id: id },
+			success: function(jArray) {
+				jArray.forEach(function (check) {
+					if (check.res == 1) {
+						$("#userIdCheck").html("중복된 아이디가 존재합니다");
+					} else {
+						$("#userIdCheck").html("사용 가능합니다");
+					}
+				});
+			}, //success
+			error: function(request, status, error){ alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error+"showUserId 중 에러") }
+		}); //ajax
+	}); //showLike
   </script>
   <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
 
