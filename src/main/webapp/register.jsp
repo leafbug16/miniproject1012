@@ -215,9 +215,9 @@
   $('#floatingInput').keyup(function(){
 	  let id = $("input[name=id]").val();
 	  if (id == "") {
-		    $("#userIdCheck").html(""); // 아이디가 비어있으면 메시지 제거
-		    return;
-		  }
+	    $("#userIdCheck").html("");
+	    return;
+		}
 		$.ajax({
 			type: "GET",
 			url: "./userIdCheck",
@@ -231,7 +231,7 @@
 					}
 				});
 			}, //success
-			error: function(request, status, error){ alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error+"showUserId 중 에러") }
+			error: function(request, status, error){ alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error+"idCheck 중 에러") }
 		}); //ajax
 	}); //showLike
   </script>
